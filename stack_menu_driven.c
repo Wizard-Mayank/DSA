@@ -103,7 +103,7 @@ int main()
                 break;
             
             case 3:
-                if (isFullstack(&s)==1)
+         -m         if (isFullstack(&s)==1)
                     printf("Yes, stack is full!\n\n");
                 else
                     printf("No, the stack is not full!\n\n");
