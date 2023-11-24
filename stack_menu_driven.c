@@ -64,7 +64,13 @@ int peekStack(stack *s)
 
 void showMenu()
 {
-    printf("\nChoose one of the below:\n1. Create stack\n2. Check if stack is empty\n3. Check if stack is full\n4. Insert a value\n5. Delete last value\n6. Peek into a stack\n7. Exit\n\n");
+    printf("\nChoose one of the below:\n1. Create stack\n2. Check if stack is empty\n3. Check if stack is full\n4. Insert a value\n5. Delete last value\n6. Peek into a stack\n7. Show stack\n8. Exit\n\n");
+}
+
+void traverseStack(stack *s)
+{
+    for (int i=0; i<=s->top; ++i)
+        printf("%d ", s->element[i]);
 }
 
 int main()
@@ -103,7 +109,7 @@ int main()
                 break;
             
             case 3:
-         -m         if (isFullstack(&s)==1)
+                if (isFullstack(&s)==1)
                     printf("Yes, stack is full!\n\n");
                 else
                     printf("No, the stack is not full!\n\n");
@@ -133,6 +139,17 @@ int main()
                 break;
 
             case 7:
+                if (isEmptystack(&s))
+                    printf("\n\nStack is EMPTY!");
+                else
+                {
+                    printf("\n\nArray...\n");
+                    traverseStack(&s);
+                }
+
+                break;
+
+            case 8:
                 printf("Thank You! :)");
                 ch='n';
 
