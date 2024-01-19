@@ -62,40 +62,41 @@ bool isBST(node *root)
         return true;
 }
 
-//                              Insertion
-void insertBST(node *root, float data)
+//                              New node
+node* newNode(float data)
 {
-    node *temp = root;
     node *new = (node *)malloc(sizeof(node));
 
     new->left = NULL;
     new->data = data;
     new->right = NULL;
 
+    return new;
+}
+
+//                              Insertion
+node* insertNode(node *root, float data)
+{
     if (root == NULL)
     {
-        *root = *new;
-        return;
+        return newNode(data);
     }
 
-    while (data <= temp->data && temp->left != NULL)
-        temp = temp->left;
+    if (data < root->data)
+        root->left = insertNode(root->left, data);
 
-    while (data >= temp->data && temp->right != NULL)
-        temp = temp->right;
+    if (data > root->data)
+        root->right = insertNode(root->right, data);
 
-    if (data <= temp->data)
-    {
-        new->left = temp->left;
-        temp->left = new;
-    }
+    return root;
 
-    else
-    {
-        new->right = temp->right;
-        temp->right = new;
-    }
+    
 }
+
+// bool deleteNode(node *root)
+// {
+
+// }
 
 void menu()
 {
@@ -104,12 +105,11 @@ void menu()
 
 int main()
 {
-    char cont;
+    char cont='y';
     int ch;
     float dt;
 
-    node *root = NULL;
-
+    node *root = newNode(100);
     do
     {
     A:
@@ -136,7 +136,7 @@ int main()
             printf("\n\nEnter the data you want to insert: ");
             scanf("%f", &dt);
 
-            insertBST(root, dt);
+            insertNode(root, dt);
             break;
         case 5:
             cont = 'n';
