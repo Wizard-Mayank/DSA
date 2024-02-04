@@ -119,46 +119,6 @@ int deleteFront(struct Node **head)
     return value;
 }
 
-bool deleteMid(struct Node **head, int key)
-{
-    if ((*head)->next == NULL)
-    {
-        if ((*head)->data == key)
-        {
-            *head = NULL;
-            return true;
-        }
-        else
-            return false;
-    }
-
-    struct Node *temp = *head;
-    bool res = false;
-
-    if (!isEmpty(*head))
-    {
-        while (temp != NULL)
-        {
-            if (temp->data == key)
-            {
-                res = true;
-                struct Node *del = temp;
-                temp->prev->next = temp->next;
-                temp->next->prev = temp->prev;
-                free(del);
-                break;
-            }
-
-            temp = temp->next;
-        }
-    }
-
-    else
-        return false;
-
-    return res;
-}
-
 int deleteRear(struct Node **head)
 {
     if ((*head)->next == NULL)
@@ -177,6 +137,55 @@ int deleteRear(struct Node **head)
     temp->prev->next = NULL;
     free(temp);
     return value;
+}
+
+bool deleteMid(struct Node **head, int key)
+{
+    if ((*head)->next == NULL)
+    {
+        if ((*head)->data == key)
+        {
+            *head = NULL;
+            return true;
+        }
+        else
+            return false;
+    }
+
+    struct Node *temp = *head;
+    bool res = false;
+
+    if (!isEmpty(*head))
+    {
+        if ((*head)->data == key)
+        {
+            int dt = deleteFront(head);
+            return true;
+        }
+
+        while (temp->next != NULL)
+        {
+            if (temp->data == key)
+            {
+                res = true;
+                struct Node *del = temp;
+                temp->prev->next = temp->next;
+                temp->next->prev = temp->prev;
+                free(del);
+                return true;
+            }
+
+            temp = temp->next;
+        }
+    }
+
+    if (temp->data==key && temp->next==NULL)
+    {
+        int dt = deleteRear(head);
+        return true;
+    }
+
+    return false;
 }
 
 void traverse(struct Node **head)
