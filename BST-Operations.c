@@ -93,6 +93,20 @@ node* insertNode(node *root, float data)
     
 }
 
+//                              InOrder Successor
+
+// node* iSuccessor(node* root, float data)
+// {
+//     if (root!=NULL)
+//     {
+//         iSuccessor(root->left, data);
+//         if (root->data==data)
+//             return 
+//     }
+// }
+
+//                              InOrder Predecessor
+
 // bool deleteNode(node *root)
 // {
 
