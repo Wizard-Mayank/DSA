@@ -4,8 +4,6 @@ int binarySearch(int *arr, int key, int size)
 {
     int lb=0, ub=size-1;
 
-    //test
-
     while(lb<=ub)
     {
         int mid = (lb+ub)/2;
